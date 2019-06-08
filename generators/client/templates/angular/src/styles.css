@@ -1,0 +1,51 @@
+/* ==========================================================================
+Helper styles
+========================================================================== */
+
+.m-top-big-space {
+  margin: 5rem;
+}
+
+.m-top-2 {
+  margin-top: 2rem;
+}
+
+.m-bottom-2 {
+  margin-bottom: 2rem;
+}
+
+.m-top-and-bottom {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.m-top-and-bottom-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.m-left-2 {
+  margin-left: 2rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.list-without-bullets {
+  list-style-type: none;
+}
+/* ==========================================================================
+Generic styles
+========================================================================== */
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid green;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid red;
+}
+
+input.ng-untouched, textarea.ng-untouched, select.ng-untouched {
+  border-left: 5px solid #80bdff;
+}

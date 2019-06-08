@@ -1,0 +1,474 @@
+{
+  "globalMessages": {
+    "required": "El campo es requerido",
+    "minlength": "la longitud mínima es de %d caracteres",
+    "maxlength": "La longitud máxima es de %d caracteres"
+  },
+  "entities": [
+    {
+      "name": "Category",
+      "attributes": [
+        {
+          "name": "CategoryName",
+          "type": "String"
+        },
+        {
+          "name": "Description",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Product",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Product",
+          "localField": "_id",
+          "foreignField": "idCategory"
+        }
+      ]
+    },
+    {
+      "name": "CustomerDemographic",
+      "attributes": [
+        {
+          "name": "CustomerDesc",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Customer",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Customer",
+          "localField": "_id",
+          "foreignField": "idCustomerDemographic"
+        }
+      ]
+    },
+    {
+      "name": "Customer",
+      "attributes": [
+        {
+          "name": "CompanyName",
+          "type": "String"
+        },
+        {
+          "name": "ContactName",
+          "type": "String"
+        },
+        {
+          "name": "ContactTitle",
+          "type": "String"
+        },
+        {
+          "name": "Address",
+          "type": "String"
+        },
+        {
+          "name": "City",
+          "type": "String"
+        },
+        {
+          "name": "Region",
+          "type": "String"
+        },
+        {
+          "name": "PostalCode",
+          "type": "String"
+        },
+        {
+          "name": "Country",
+          "type": "String"
+        },
+        {
+          "name": "Phone",
+          "type": "String"
+        },
+        {
+          "name": "Fax",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Order",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Order",
+          "localField": "_id",
+          "foreignField": "idCustomer"
+        },
+        {
+          "entityRef": "CustomerDemographic",
+          "typeRelationship": "one-to-many",
+          "fieldName": "CustomerDemographic",
+          "localField": "_id",
+          "foreignField": "idCustomer"
+        }
+      ]
+    },
+    {
+      "name": "Employee",
+      "attributes": [
+        {
+          "name": "LastName",
+          "type": "String"
+        },
+        {
+          "name": "FirstName",
+          "type": "String"
+        },
+        {
+          "name": "Title",
+          "type": "String"
+        },
+        {
+          "name": "TitleOfCourtesy",
+          "type": "String"
+        },
+        {
+          "name": "BirthDate",
+          "type": "Date"
+        },
+        {
+          "name": "HireDate",
+          "type": "Date"
+        },
+        {
+          "name": "Address",
+          "type": "String"
+        },
+        {
+          "name": "City",
+          "type": "String"
+        },
+        {
+          "name": "Region",
+          "type": "String"
+        },
+        {
+          "name": "PostalCode",
+          "type": "String"
+        },
+        {
+          "name": "Country",
+          "type": "String"
+        },
+        {
+          "name": "HomePhone",
+          "type": "String"
+        },
+        {
+          "name": "Extension",
+          "type": "String"
+        },
+        {
+          "name": "Notes",
+          "type": "String"
+        },
+        {
+          "name": "PhotoPath",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Employee",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Employee1",
+          "localField": "_id",
+          "foreignField": "idEmployee"
+        },
+        {
+          "entityRef": "Employee",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Employee2"
+        },
+        {
+          "entityRef": "Order",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Order",
+          "localField": "_id",
+          "foreignField": "idEmployee"
+        },
+        {
+          "entityRef": "Territory",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Territory",
+          "localField": "_id",
+          "foreignField": "idEmployee"
+        }
+      ]
+    },
+    {
+      "name": "Order_Detail",
+      "attributes": [
+        {
+          "name": "UnitPrice",
+          "type": "Number"
+        },
+        {
+          "name": "Quantity",
+          "type": "Number"
+        },
+        {
+          "name": "Discount",
+          "type": "Number"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Order",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Order"
+        },
+        {
+          "entityRef": "Product",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Product"
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "attributes": [
+        {
+          "name": "OrderDate",
+          "type": "Date"
+        },
+        {
+          "name": "RequiredDate",
+          "type": "Date"
+        },
+        {
+          "name": "ShippedDate",
+          "type": "Date"
+        },
+        {
+          "name": "Freight",
+          "type": "Number"
+        },
+        {
+          "name": "ShipName",
+          "type": "String"
+        },
+        {
+          "name": "ShipAddress",
+          "type": "String"
+        },
+        {
+          "name": "ShipCity",
+          "type": "String"
+        },
+        {
+          "name": "ShipRegion",
+          "type": "String"
+        },
+        {
+          "name": "ShipPostalCode",
+          "type": "String"
+        },
+        {
+          "name": "ShipCountry",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Customer",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Customer"
+        },
+        {
+          "entityRef": "Employee",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Employee"
+        },
+        {
+          "entityRef": "Order_Detail",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Order_Detail",
+          "localField": "_id",
+          "foreignField": "idOrder"
+        },
+        {
+          "entityRef": "Shipper",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Shipper"
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "attributes": [
+        {
+          "name": "ProductName",
+          "type": "String"
+        },
+        {
+          "name": "QuantityPerUnit",
+          "type": "String"
+        },
+        {
+          "name": "UnitPrice",
+          "type": "Number"
+        },
+        {
+          "name": "UnitsInStock",
+          "type": "Number"
+        },
+        {
+          "name": "UnitsOnOrder",
+          "type": "Number"
+        },
+        {
+          "name": "ReorderLevel",
+          "type": "Number"
+        },
+        {
+          "name": "Discontinued",
+          "type": "Boolean"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Category",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Category"
+        },
+        {
+          "entityRef": "Order_Detail",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Order_Detail",
+          "localField": "_id",
+          "foreignField": "idProduct"
+        },
+        {
+          "entityRef": "Supplier",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Supplier"
+        }
+      ]
+    },
+    {
+      "name": "Region",
+      "attributes": [
+        {
+          "name": "RegionDescription",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Territory",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Territory",
+          "localField": "_id",
+          "foreignField": "idRegion"
+        }
+      ]
+    },
+    {
+      "name": "Shipper",
+      "attributes": [
+        {
+          "name": "CompanyName",
+          "type": "String"
+        },
+        {
+          "name": "Phone",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Order",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Order",
+          "localField": "_id",
+          "foreignField": "idShipper"
+        }
+      ]
+    },
+    {
+      "name": "Supplier",
+      "attributes": [
+        {
+          "name": "CompanyName",
+          "type": "String"
+        },
+        {
+          "name": "ContactName",
+          "type": "String"
+        },
+        {
+          "name": "ContactTitle",
+          "type": "String"
+        },
+        {
+          "name": "Address",
+          "type": "String"
+        },
+        {
+          "name": "City",
+          "type": "String"
+        },
+        {
+          "name": "Region",
+          "type": "String"
+        },
+        {
+          "name": "PostalCode",
+          "type": "String"
+        },
+        {
+          "name": "Country",
+          "type": "String"
+        },
+        {
+          "name": "Phone",
+          "type": "String"
+        },
+        {
+          "name": "Fax",
+          "type": "String"
+        },
+        {
+          "name": "HomePage",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Product",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Product",
+          "localField": "_id",
+          "foreignField": "idSupplier"
+        }
+      ]
+    },
+    {
+      "name": "Territory",
+      "attributes": [
+        {
+          "name": "TerritoryDescription",
+          "type": "String"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Region",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Region"
+        },
+        {
+          "entityRef": "Employee",
+          "typeRelationship": "one-to-many",
+          "fieldName": "Employee",
+          "localField": "_id",
+          "foreignField": "idTerritory"
+        }
+      ]
+    }
+  ]
+}

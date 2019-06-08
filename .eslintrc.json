@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "linebreak-style": ["error", "unix"],
+    "comma-dangle": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "prefer-destructuring": "off",
+    "no-restricted-syntax": ["error", "ForInStatement"],
+    "no-plusplus": "off"
+  }
+}

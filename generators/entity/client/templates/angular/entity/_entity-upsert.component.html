@@ -1,0 +1,57 @@
+<div class="container m-top-and-bottom">
+  <div class="card">
+    <div class="card-header text-white text-center bg-dark">
+      <h4>{{ crudOperationTitle }} <%= entityName.start %></h4>
+    </div>
+    <div class="card-body">
+      <form #myForm="ngForm">
+        <div class="row">
+          <div *ngIf="<%= entityName.camel %> && <%= entityName.camel %>._id" class="col-md-12 form-group">
+            <label for="field_id">ID</label>
+            <input id="fiel_id" *ngIf="<%= entityName.camel %>" type="text" class="form-control" name="id" [(ngModel)]="<%= entityName.camel %>._id" disabled required>
+          </div>
+          <%
+            for (let attributesGroupByRow of attributesGroupByPosition) {
+              let widthColumns = parseInt(12 / attributesGroupByRow.length);
+              let classGridLayout = 'col-' + widthColumns;
+              console.log('classGridLayout: '+classGridLayout);
+              for (let attribute of attributesGroupByRow) {
+          %>
+          <% include _control-type %>
+          <% }} %>
+          <%
+            for (let attribute of attributesWithoutPosition) {
+              let classGridLayout = 'col-12';
+          %>
+          <% include _control-type %>
+          <% } %>
+
+          <%_ for (let relationship of manyToOneRelationShips) { _%>
+            <div class="col-12 form-group" *ngIf="<%= relationship.entityRef.camel %>s">
+              <label for="field_<%= relationship.entityRef.camel %>"><%= relationship.entityRef.start %></label>
+
+              <select *ngIf="!<%= entityName.camel %>" class="form-control" name="id<%= relationship.fieldName.pascal %>" ngModel>
+                <option [ngValue]="null"></option>
+                <option [ngValue]="<%= relationship.entityRef.camel %>._id" *ngFor="let <%= relationship.entityRef.camel %> of <%= relationship.entityRef.camel %>s">{{ <%= relationship.entityRef.camel %>._id }}</option>
+              </select>
+
+              <select *ngIf="<%= entityName.camel %> && <%= entityName.camel %>.id<%= relationship.fieldName.pascal %>" class="form-control" name="id<%= relationship.fieldName.pascal %>" [(ngModel)]="<%= entityName.camel %>.id<%= relationship.fieldName.pascal %>">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="<%= relationship.entityRef.camel %>._id" *ngFor="let <%= relationship.entityRef.camel %> of <%= relationship.entityRef.camel %>s">{{ <%= relationship.entityRef.camel %>._id }}</option>
+              </select>
+            </div>
+          <%_ } _%>
+
+          <div id="buttonsPanel" class="col-12 form-group">
+            <button class="btn btn-dark cursor-pointer" (click)="save(myForm.value)" *ngIf="isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Registrar
+            </button>
+            <button class="btn btn-dark cursor-pointer" (click)="update()" *ngIf="!isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

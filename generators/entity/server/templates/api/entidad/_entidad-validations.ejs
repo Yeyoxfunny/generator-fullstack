@@ -1,0 +1,16 @@
+<%_
+  let result = '';
+  if (attribute.required) {
+    result += ', required: true';
+  }
+  if(attribute.validations) {
+    let mongooseValidations = [];
+
+    for (let validation of attribute.validations) {
+      mongooseValidations.push(validation.type + ': ' + validation.value);
+    }
+
+    result += ', ' + mongooseValidations.join(', ');
+  }
+_%>
+<%= result _%>

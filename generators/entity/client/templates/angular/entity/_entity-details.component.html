@@ -1,0 +1,25 @@
+<div *ngIf="<%= entityName.camel %>" class="container<% if (oneToManyRelationShips.length > 0) { %>-fluid<% } %>">
+  <h3 class="m-top-and-bottom-2"><%= entityName.start %></h3>
+  <hr />
+  <dl>
+    <dt>ID</dt>
+    <dd>{{ <%= entityName.camel %>._id }}</dd>
+
+  <% for (let attribute of attributes) { %>
+    <dt><%= _.startCase(attribute.name) %></dt>
+    <dd>{{ <%= entityName.camel %>.<%= attribute.name %> }}</dd>
+    <%_ } _%>
+
+    <%_ for (let relationship of manyToOneRelationShips) { _%>
+    <dt><%= relationship.entityRef.pascal %></dt>
+    <dd>
+      <a [routerLink]="['/entities', '<%= relationship.entityRef.camel %>', <%= entityName.camel%>.<%= relationship.entityRef.camel %>._id]">{{ <%= entityName.camel%>.<%= relationship.entityRef.camel %>._id }}</a>
+    </dd>
+    <%_ } _%>
+  </dl>
+  <a routerLink="update" class="btn btn-primary"><i class="fa fa-refresh fa-fw"></i>Actualizar</a>
+
+  <%_ for (let relationship of oneToManyRelationShips) { _%>
+  <app-<%= relationship.entityRef.kebab %>-list [<%= relationship.fieldName.camel %>s]="<%= entityName.camel %>.<%= relationship.entityRef.camel %>s"></app-<%= relationship.entityRef.kebab %>-list>
+  <%_ } _%>
+</div>

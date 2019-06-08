@@ -1,0 +1,32 @@
+<% if (attribute.required || attribute.validations) { -%>
+    <div *ngIf="(myForm.controls.<%= attribute.name %>?.dirty && myForm.controls.<%= attribute.name %>?.invalid)">
+        <% if (attribute.required) {
+            let messageReq;
+            if (attribute.messages){
+                messageReq = attribute.messages["required"];
+            }
+            if (!messageReq && globalMessages){
+                messageReq = globalMessages["required"];
+            }
+        -%>
+        <small [hidden]="!myForm.controls.<%= attribute.name %>?.errors?.required" class="form-text text-danger"><%= messageReq %></small>
+        <% } -%>
+        <%  for (let i = 0; attribute.validations && i < attribute.validations.length; i++) {
+            let validation = attribute.validations[i];
+            let message = validation.message;
+            if(!message && attribute.messages){
+                message = attribute.messages[validation.type];
+            }
+            if(!message && globalMessages){
+                message = globalMessages[validation.type];
+            }
+            if(message){
+                message = util.format(message, validation.value);
+            }
+            -%>
+            <small [hidden]="!myForm.controls.<%= attribute.name %>?.errors?.<%= validation.type %>" class="form-text text-danger">
+                <%= message %>
+            </small>
+        <% } -%>
+    </div>
+<% } -%>
